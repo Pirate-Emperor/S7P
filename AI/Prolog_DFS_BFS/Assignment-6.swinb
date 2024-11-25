@@ -1,0 +1,69 @@
+<div class="notebook">
+
+<div class="nb-cell program" name="p1">
+
+</div>
+
+<div class="nb-cell query" name="q1">
+
+</div>
+
+<div class="nb-cell program" name="p2">
+% DFS
+edge(a, b).
+edge(a, c).
+edge(b, d).
+edge(b, e).
+edge(c, f).
+edge(c, g).
+
+dfs(Node) :-
+    dfs_util(Node, []).
+
+dfs_util(Node, Visited) :-
+    \+ member(Node, Visited), 
+    write(Node), write(' '),       
+    findall(Neighbor, edge(Node, Neighbor), Neighbors), 
+    dfs_neighbors(Neighbors, [Node | Visited]).
+
+% Visit each neighbor
+dfs_neighbors([], _).
+dfs_neighbors([Neighbor | Rest], Visited) :-
+    dfs_util(Neighbor, Visited),
+    dfs_neighbors(Rest, Visited).
+
+</div>
+
+<div class="nb-cell query" name="q2">
+dfs(a).
+</div>
+
+<div class="nb-cell program" name="p3">
+% BFS
+edge(a, b).
+edge(a, c).
+edge(b, d).
+edge(b, e).
+edge(c, f).
+edge(c, g).
+
+bfs(Start) :-
+    bfs([Start], []).
+
+bfs([], _).
+bfs([Node|Queue], Visited) :-
+    \+ member(Node, Visited),
+    write(Node), write(' '),
+    findall(Neighbor, edge(Node, Neighbor), Neighbors),
+    append(Queue, Neighbors, NewQueue),
+    bfs(NewQueue, [Node|Visited]).
+bfs([_|Queue], Visited) :-
+    bfs(Queue, Visited).
+
+</div>
+
+<div class="nb-cell query" name="q3">
+bfs(a).
+</div>
+
+</div>

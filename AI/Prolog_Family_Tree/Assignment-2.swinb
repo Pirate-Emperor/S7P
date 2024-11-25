@@ -1,0 +1,232 @@
+<div class="notebook">
+
+<div class="nb-cell program" name="p1">
+parent(albert, jim).
+parent(albert, peter).
+parent(jim, brian).
+parent(john, darren).
+parent(peter, lee).
+parent(peter, sandra).
+parent(peter, james).
+parent(peter, kate).
+parent(petr, kyle).
+parent(brian, jenny).
+parent(irene, jim).
+parent(irene, peter).
+parent(pat, brian).
+parent(pat, darren).
+parent(amanda, jenny).
+
+female(irene).
+female(pat).
+female(lee).
+female(sandra).
+female(jenny).
+female(amanda).
+female(kate).
+
+male(albert).
+male(jim).
+male(peter).
+male(brian).
+male(john).
+male(darren).
+male(james).
+male(kyle).
+
+yearOfBirth(irene, 1923).
+yearOfBirth(pat, 1954).
+yearOfBirth(lee, 1970).
+yearOfBirth(sandra, 1973).
+yearOfBirth(jenny, 2004).
+yearOfBirth(amanda, 1979).
+yearOfBirth(albert, 1926).
+yearOfBirth(jim, 1949).
+yearOfBirth(peter, 1945).
+yearOfBirth(brian, 1974).
+yearOfBirth(john, 1955).
+yearOfBirth(darren, 1976).
+yearOfBirth(james, 1969).
+yearOfBirth(kate, 1975).
+yearOfBirth(kyle, 1976).
+
+older(Person1, Person2) :-
+    yearOfBirth(Person1, Year1),
+    yearOfBirth(Person2, Year2),
+    Year2 &gt; Year1.
+</div>
+
+<div class="nb-cell query" name="q1">
+parent(albert, peter).
+</div>
+
+<div class="nb-cell query" name="q2">
+parent(jim, Child).
+</div>
+
+<div class="nb-cell query" name="q3">
+parent(Parent, brian).
+</div>
+
+<div class="nb-cell query" name="q4">
+parent(irene, X), parent(X, brian).
+</div>
+
+<div class="nb-cell query" name="q5">
+parent(irene, Parent), parent(Parent, Grandchild).
+</div>
+
+<div class="nb-cell program" name="p2">
+parent(albert, jim).
+parent(albert, peter).
+parent(jim, brian).
+parent(john, darren).
+parent(peter, lee).
+parent(peter, sandra).
+parent(peter, james).
+parent(peter, kate).
+parent(petr, kyle).
+parent(brian, jenny).
+parent(irene, jim).
+parent(irene, peter).
+parent(pat, brian).
+parent(pat, darren).
+parent(amanda, jenny).
+
+female(irene).
+female(pat).
+female(lee).
+female(sandra).
+female(jenny).
+female(amanda).
+female(kate).
+
+male(albert).
+male(jim).
+male(peter).
+male(brian).
+male(john).
+male(darren).
+male(james).
+male(kyle).
+
+yearOfBirth(irene, 1923).
+yearOfBirth(pat, 1954).
+yearOfBirth(lee, 1970).
+yearOfBirth(sandra, 1973).
+yearOfBirth(jenny, 2004).
+yearOfBirth(amanda, 1979).
+yearOfBirth(albert, 1926).
+yearOfBirth(jim, 1949).
+yearOfBirth(peter, 1945).
+yearOfBirth(brian, 1974).
+yearOfBirth(john, 1955).
+yearOfBirth(darren, 1976).
+yearOfBirth(james, 1969).
+yearOfBirth(kate, 1975).
+yearOfBirth(kyle, 1976).
+
+older(Person1, Person2) :-
+    yearOfBirth(Person1, Year1),
+    yearOfBirth(Person2, Year2),
+    Year2 &gt; Year1.
+</div>
+
+<div class="nb-cell query" name="q6">
+older(Person, pat).
+</div>
+
+<div class="nb-cell query" name="q7">
+older(darren, Person).
+</div>
+
+<div class="nb-cell query" name="q8">
+parent(Parent, sandra), parent(Parent, Sibling), Sibling \= sandra.
+</div>
+
+<div class="nb-cell query" name="q9">
+parent(Parent, sandra), parent(Parent, Brother), male(Brother), yearOfBirth(Brother, Year1), yearOfBirth(sandra, Year2), Year1 &lt; Year2.
+
+</div>
+
+<div class="nb-cell query" name="q10">
+parent(Predecessor, kyle).
+</div>
+
+<div class="nb-cell query" name="q11">
+female(Sister), parent(Parent, kate), parent(Parent, Sister), Sister \= kate.
+</div>
+
+<div class="nb-cell query" name="q13">
+parent(albert, _).
+</div>
+
+<div class="nb-cell program" name="p3">
+parent(albert, jim).
+parent(albert, peter).
+parent(jim, brian).
+parent(john, darren).
+parent(peter, lee).
+parent(peter, sandra).
+parent(peter, james).
+parent(peter, kate).
+parent(petr, kyle).
+parent(brian, jenny).
+parent(irene, jim).
+parent(irene, peter).
+parent(pat, brian).
+parent(pat, darren).
+parent(amanda, jenny).
+
+female(irene).
+female(pat).
+female(lee).
+female(sandra).
+female(jenny).
+female(amanda).
+female(kate).
+
+male(albert).
+male(jim).
+male(peter).
+male(brian).
+male(john).
+male(darren).
+male(james).
+male(kyle).
+
+yearOfBirth(irene, 1923).
+yearOfBirth(pat, 1954).
+yearOfBirth(lee, 1970).
+yearOfBirth(sandra, 1973).
+yearOfBirth(jenny, 2004).
+yearOfBirth(amanda, 1979).
+yearOfBirth(albert, 1926).
+yearOfBirth(jim, 1949).
+yearOfBirth(peter, 1945).
+yearOfBirth(brian, 1974).
+yearOfBirth(john, 1955).
+yearOfBirth(darren, 1976).
+yearOfBirth(james, 1969).
+yearOfBirth(kate, 1975).
+yearOfBirth(kyle, 1976).
+
+older(Person1, Person2) :-
+    yearOfBirth(Person1, Year1),
+    yearOfBirth(Person2, Year2),
+    Year2 &gt; Year1.
+
+male1(person('Barry', 'Drake')).
+male1(person('Jim', 'Fried')).
+female1(person('Dot', 'Kanga')).
+</div>
+
+<div class="nb-cell query" name="q14">
+male1(person(_, LastName)).
+</div>
+
+<div class="nb-cell query" name="q12">
+female1(person(_, LastName)).
+</div>
+
+</div>

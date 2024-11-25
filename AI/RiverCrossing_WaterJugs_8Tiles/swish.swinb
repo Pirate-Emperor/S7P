@@ -1,0 +1,34 @@
+<div class="notebook">
+
+<div class="nb-cell program" name="p1">
+% Definition
+move([X,X,Goat,Cabbage], wolf, [Y,Y,Goat,Cabbage]) :- travel(X,Y).
+move([X,Wolf,X,Cabbage], goat, [Y,Wolf,Y,Cabbage]) :- travel(X,Y).
+move([X,Wolf,Goat,X], cabbage, [Y,Wolf,Goat,Y]) :- travel(X,Y).
+move([X,Wolf,Goat,Cabbage], nothing, [Y,Wolf,Goat,Cabbage]) :- travel(X,Y).
+travel(e, w).
+travel(w, e).
+safe([X,_,X,_]).
+safe([X,X,_,X]).
+
+% Methods
+solve([e,e,e,e],[]).
+solve(State,[FirstMove|OtherMoves]) :-
+    move(State, FirstMove, NextState),
+    safe(NextState),
+    solve(NextState, OtherMoves).
+</div>
+
+<div class="nb-cell query" name="q1">
+length(X,7), solve([w,w,w,w],X).
+</div>
+
+<div class="nb-cell program" name="p2">
+
+</div>
+
+<div class="nb-cell query" name="q2">
+
+</div>
+
+</div>

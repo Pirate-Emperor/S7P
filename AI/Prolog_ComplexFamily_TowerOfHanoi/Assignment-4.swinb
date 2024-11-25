@@ -1,0 +1,90 @@
+<div class="notebook">
+
+<div class="nb-cell program" name="p1">
+% Facts
+married(john, widow).                 
+married(father, step_daughter).       
+
+parent(widow, step_daughter).
+% parent(john, step_daughter).
+parent(step_daughter, john).        
+parent(john, son1).                   
+parent(step_daughter, son2).           
+
+% Definition
+step_daughter_of(X, Y) :-
+    married(Y, Z),
+    parent(Z, X),
+    \+ parent(Y, X).
+
+grandfather(X, Y) :-
+    parent(X, Z),
+    parent(Z, Y).
+
+father_in_law(X, Y) :-
+    married(Y, Z),
+    parent(X, Z).
+
+sibling(X, Y) :-
+    parent(P, X),
+    parent(P, Y),
+    X \= Y.
+
+uncle_of(X, Y) :-
+    parent(Z, Y),
+    sibling(X, Z).
+
+brother_in_law_of(X, Y) :-
+    married(X, Z),
+    sibling(Y, Z).
+brother_in_law_of(X, Y) :-
+    married(Y, Z),
+    sibling(X, Z).
+
+% Method
+is_my_own_grandfather(Person) :-
+    grandfather(Person, Person).
+</div>
+
+<div class="nb-cell query" name="q1">
+is_my_own_grandfather(john).
+</div>
+
+<div class="nb-cell program" name="p2">
+pop(usa,327). 
+pop(india,1300). 
+pop(australia,25).
+pop(canada,36).
+area(usa,4). 
+area(india,1).
+area(australia,3).
+area(canada,4).
+
+density(Country, Density) :-
+    pop(Country, Population),
+    area(Country, Area),
+    Density is Population / Area.
+
+
+</div>
+
+<div class="nb-cell query" name="q2">
+density(usa, Density).
+</div>
+
+<div class="nb-cell program" name="p3">
+hanoi(0, _, _, _).
+
+hanoi(N, A, B, C) :-
+    N &gt; 0,
+    M is N - 1,
+    hanoi(M, A, C, B), 
+    write('Move disk '), write(N), write(' from '), write(A), write(' to '), write(C), nl,
+    hanoi(M, B, A, C).
+</div>
+
+<div class="nb-cell query" name="q3">
+hanoi(5, left, center, right).
+</div>
+
+</div>

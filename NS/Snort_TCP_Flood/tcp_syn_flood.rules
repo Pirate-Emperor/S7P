@@ -1,0 +1,2 @@
+alert tcp $EXTERNAL_NET any -> $HOME_NET 80 (msg:"SYN Flood Detected"; flags:S; detection_filter:track by_src, count 100, seconds 1; sid:1000004;)
+alert icmp $EXTERNAL_NET any -> $HOME_NET any (msg:"SYN Flood Detected II"; detection_filter:track by_src, count 100, seconds 1; sid:1000001;)

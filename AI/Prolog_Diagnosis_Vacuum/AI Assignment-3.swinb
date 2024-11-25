@@ -1,0 +1,140 @@
+<div class="notebook">
+
+<div class="nb-cell markdown" name="md1">
+Assignment 3
+
+(i) Write a PROLOG program for diagnosis the childhood diseases.
+Diagnosis (disease, symptom)
+
+(ii) Write a PROLOG program forVacuum-cleaner which takes a char array of 1's and
+0's, 1 stating dirty and the 0 stating clean. Then the vacuum cleaner moves from
+left to right and cleans the dirty tiles. At the end of the sequence the program
+outputs the performance measure of the Vacuum-cleaner.
+</div>
+
+<div class="nb-cell program" name="p1">
+symptom(fever).
+symptom(rash).
+symptom(headache).
+symptom(runny_nose).
+symptom(conjunctivitis).
+symptom(cough).
+symptom(body_ache).
+symptom(chills).
+symptom(sore_throat).
+symptom(sneezing).
+symptom(swollen_glands).
+
+disease(german_measles, [fever, headache, runny_nose, rash]).
+disease(common_cold, [headache, sneezing, sore_throat, runny_nose, chills]).
+disease(measles, [cough, sneezing, runny_nose]).
+disease(flu, [fever, headache, body_ache, conjunctivitis, chills, sore_throat, runny_nose, cough]).
+disease(mumps, [fever, swollen_glands]).
+disease(chicken_pox, [fever, chills, body_ache, rash]).
+
+ask_symptom(Symptom) :-
+    write('Does the child have '), write(Symptom), write('? (yes/no): '),
+    read(Response),
+    Response == yes.
+
+has_symptoms([]).
+has_symptoms([Symptom|Rest]) :-
+    ask_symptom(Symptom),
+    has_symptoms(Rest).
+
+diagnose :-
+    disease(Disease, Symptoms),
+    has_symptoms(Symptoms),
+    write('The child might have '), write(Disease), nl, !.
+
+start :-
+    write('Childhood Disease Diagnosis System'), nl,
+    write('Please answer the following questions with yes or no.'), nl,
+    diagnose.
+
+</div>
+
+<div class="nb-cell query" name="q8">
+start.
+</div>
+
+<div class="nb-cell program" name="p2">
+vacuum_cleaner(CharArray, Performance) :-
+    maplist(atom_number, CharArray, IntList),
+    clean_and_measure(IntList, CleanedList, CleanedCount),
+    format('Cleaned List: ~w~n', [CleanedList]),
+    format('Performance Measure (Number of tiles cleaned): ~d~n', [CleanedCount]),
+    Performance = CleanedCount.
+
+clean_and_measure([], [], 0).
+clean_and_measure([0|Rest], [0|CleanRest], CleanCount) :-
+    clean_and_measure(Rest, CleanRest, CleanCount).
+clean_and_measure([1|Rest], [0|CleanRest], CleanCount) :-
+    clean_and_measure(Rest, CleanRest, RestCount),
+    CleanCount is RestCount + 1.
+</div>
+
+<div class="nb-cell query" name="q9">
+vacuum_cleaner(['1', '1', '1', '1', '0', '1'], Performance).
+</div>
+
+<div class="nb-cell program" name="p4">
+vacuum_cleaner_2d(CharArray2D, Performance) :-
+    maplist(maplist(atom_number), CharArray2D, IntArray2D),
+    clean_and_measure_2d(IntArray2D, CleanedArray2D, CleanedCount),
+    format('Cleaned Array: ~w~n', [CleanedArray2D]),
+    format('Performance Measure (Number of tiles cleaned): ~d~n', [CleanedCount]),
+    Performance = CleanedCount.
+
+clean_and_measure_2d([], [], 0).
+clean_and_measure_2d([Row|RestRows], [CleanRow|CleanRestRows], TotalCleaned) :-
+    clean_and_measure_1d(Row, CleanRow, CleanedCount),
+    clean_and_measure_2d(RestRows, CleanRestRows, RestCount),
+    TotalCleaned is CleanedCount + RestCount.
+
+clean_and_measure_1d([], [], 0).
+clean_and_measure_1d([0|Rest], [0|CleanRest], CleanCount) :-
+    clean_and_measure_1d(Rest, CleanRest, CleanCount).
+clean_and_measure_1d([1|Rest], [0|CleanRest], CleanCount) :-
+    clean_and_measure_1d(Rest, CleanRest, RestCount),
+    CleanCount is RestCount + 1.
+
+</div>
+
+<div class="nb-cell query" name="q10">
+vacuum_cleaner_2d([['1', '0', '1'], ['0', '1', '1'], ['1', '0', '0']], Performance).
+</div>
+
+<div class="nb-cell program" name="p3">
+
+</div>
+
+<div class="nb-cell query" name="q1">
+
+</div>
+
+<div class="nb-cell query" name="q2">
+
+</div>
+
+<div class="nb-cell query" name="q3">
+
+</div>
+
+<div class="nb-cell query" name="q4">
+
+</div>
+
+<div class="nb-cell query" name="q5">
+
+</div>
+
+<div class="nb-cell query" name="q6">
+
+</div>
+
+<div class="nb-cell query" name="q7">
+
+</div>
+
+</div>

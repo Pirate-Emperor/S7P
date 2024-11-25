@@ -1,0 +1,44 @@
+<div class="notebook">
+
+<div class="nb-cell query" name="q1">
+
+</div>
+
+<div class="nb-cell program" name="p1">
+father(a, b).
+father(a, c).
+father(b, d).
+father(b, e).
+father(c, f).
+
+% Predicate to check if X and Y are brothers
+brother(X, Y) :- father(Z, X), father(Z, Y), X \= Y.
+
+% Predicate to check if X and Y are cousins
+cousin(X, Y) :- father(A, X), father(B, Y), brother(A, B).
+
+% Predicate to check if X is a grandson of Y
+grandson(X, Y) :- father(Y, Z), father(Z, X).
+
+% Predicate to check if X is a descendent of Y
+descendent(X, Y) :- father(Y, X).
+descendent(X, Y) :- father(Y, Z), descendent(X, Z).
+</div>
+
+<div class="nb-cell query" name="q2">
+ brother(X, Y).
+</div>
+
+<div class="nb-cell query" name="q3">
+cousin(X, Y).
+</div>
+
+<div class="nb-cell query" name="q4">
+grandson(X, Y).
+</div>
+
+<div class="nb-cell query" name="q5">
+descendent(X, Y).
+</div>
+
+</div>
